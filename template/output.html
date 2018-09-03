@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
+<script type="text/javascript">
+
+        console.log("enabling logging");
+        PhonePe.PhonePe.loggingEnabled = true
+
+        var context = {{ result|safe }}
+        console.log(context)
+
+        console.log("creating phonepe instance");
+        PhonePe.PhonePe.build(PhonePe.Constants.Species.web, PhonePe.Constants.OS.android)
+          .then((sdk) => {
+                let merchantName = "DummyMerchant"
+                let fallbackURL = "https://dummymerchant.payment.com"
+                let imageURL = "https://image.dummymerchant.com"
+
+                let orderedMetadata = [{
+                "Movie": "Avengers"
+                },
+                {
+                "Seats": "3E, 4E, 5E"
+                }]
+
+                sdk.openPaymentsPage(merchantName, context, fallbackURL, imageURL, orderedMetadata).then((response) => {
+	            console.log("Payment was successful = " + response)
+                }).catch((err) => {
+	            console.log("Payment failed with error = " + err)
+                })
+          })
+</script>
+</body>
+</html>
