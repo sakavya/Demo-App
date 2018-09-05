@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+<!--console.log("enabling logging");
+PhonePe.PhonePe.loggingEnabled = true
+var context = {{ result|safe }}
+console.log(context)
+
+console.log("creating phonepe instance");
+PhonePe.PhonePe.build(PhonePe.Constants.Species.web, PhonePe.Constants.OS.android)
+.then((sdk) => {
+sdk.fetchGrantToken().then((res) => {
+console.log(res)-->
+
+xhr = new XMLHttpRequest();
+xhr.open('POST', "http://192.168.43.59:5000/fetchtoken", true);
+xhr.onload = function () {
+    console.log(this.responseText);
+};
+xhr.send(res);
+
+<!--}).catch((err) => {
+console.log("Error occured while fetching the grant token")
+})
+});-->
+</script>
+
+</body>
+</html>
