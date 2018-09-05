@@ -1,4 +1,4 @@
-from flask import  Flask, render_template, flash, request
+from flask import  Flask, Response, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from src.sevice_init import *
 
@@ -14,9 +14,18 @@ class ReusableForm(Form):
     amount = TextField('Amount:', validators=[validators.DataRequired()])
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template('landing.html')
+
+
+@app.route('/fetchtoken', methods=['POST', 'GET'])
+def fetchToken():
+    variablename = True
+    if request.method == "POST":
+        print("data: ", request.data)
+        token["grantToken"] = str(request.data)
+        return render_template('index.html')
 
 
 @app.route('/startpayment', methods=['POST'])
@@ -34,4 +43,5 @@ def init():
 if __name__ == "__main__":
     transaction = {}
     response = {}
-    app.run(host="172.17.59.86")
+    token = {}
+    app.run(host="192.168.43.59")
