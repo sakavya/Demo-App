@@ -1,14 +1,16 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <title>Phonepe web page</title>
 <body>
+
 <img src="/static/logo.png" alt="PhonePe logo" width="100" height="50">
 <br/>
     <div class = "center">
         <p class="heading"> Enter below details:</p>
-        <form action = "http://172.17.59.86:5000/startpayment" method = "POST">
+        <form action = "http://192.168.43.59:5000/startpayment" method = "POST">
             <label style ="padding-left:2.00em; text-align:center">Category: </label><select name="category">
                 <option value="Flight">Flight</option>
                 <option value="Movie">Movie</option>
